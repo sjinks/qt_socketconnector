@@ -24,13 +24,9 @@ public:
 
 	bool assignTo(QAbstractSocket* target);
 
-	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant& value);
-	QVariant socketOption(QAbstractSocket::SocketOption option);
-
 	QAbstractSocket::SocketType socketType(void) const;
 	QAbstractSocket::SocketState state(void) const;
 	QAbstractSocket::SocketError error(void) const;
-
 
 Q_SIGNALS:
 	void hostFound(void);
