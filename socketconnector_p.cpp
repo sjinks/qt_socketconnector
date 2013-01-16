@@ -12,7 +12,7 @@
 SocketConnectorPrivate::SocketConnectorPrivate(SocketConnector* const q)
 	: q_ptr(q), m_fd(-1), m_domain(-1), m_type(-1), m_proto(-1), m_port(0),
 	  m_state(QAbstractSocket::UnconnectedState), m_error(QAbstractSocket::UnknownSocketError),
-	  m_notifier(0), m_timer(0)
+	  m_lookup_id(-1), m_notifier(0), m_timer(0)
 {
 }
 
@@ -105,7 +105,7 @@ void SocketConnectorPrivate::connectToHost(const QString &address, quint16 port)
 		this->_q_startConnecting(info);
 	}
 	else {
-		QHostInfo::lookupHost(address, q, SLOT(_q_startConnecting(QHostInfo)));
+		this->m_lookup_id = QHostInfo::lookupHost(address, q, SLOT(_q_startConnecting(QHostInfo)));
 	}
 }
 
@@ -139,6 +139,20 @@ void SocketConnectorPrivate::disconnectFromHost(void)
 	this->m_addresses.clear();
 	this->m_fd = -1;
 	this->m_bound_address.clear();
+}
+
+void SocketConnectorPrivate::abort(void)
+{
+	if (QAbstractSocket::UnconnectedState == this->m_state) {
+		return;
+	}
+
+	if (-1 != this->m_lookup_id) {
+		QHostInfo::abortHostLookup(this->m_lookup_id);
+		this->m_lookup_id = -1;
+	}
+
+	this->disconnectFromHost();
 }
 
 bool SocketConnectorPrivate::bindV4(const QHostAddress& a, quint16 port)
@@ -218,6 +232,7 @@ void SocketConnectorPrivate::_q_startConnecting(const QHostInfo& info)
 {
 	qDebug("%s", Q_FUNC_INFO);
 	this->m_addresses = info.addresses();
+	this->m_lookup_id = -1;
 
 	Q_Q(SocketConnector);
 

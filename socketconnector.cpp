@@ -51,6 +51,12 @@ void SocketConnector::disconnectFromHost(void)
 	d->disconnectFromHost();
 }
 
+void SocketConnector::abort(void)
+{
+	Q_D(SocketConnector);
+	d->abort();
+}
+
 bool SocketConnector::assignTo(QAbstractSocket* target)
 {
 	Q_D(SocketConnector);

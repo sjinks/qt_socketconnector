@@ -20,6 +20,7 @@ public:
 	void connectToHost(const QString& address, quint16 port);
 	void connectToHost(const QHostAddress& address, quint16 port);
 	void disconnectFromHost(void);
+	void abort(void);
 
 	bool assignTo(QAbstractSocket* target);
 

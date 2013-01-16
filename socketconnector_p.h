@@ -20,6 +20,7 @@ public:
 	bool bindTo(const QHostAddress& a, quint16 port);
 	void connectToHost(const QString& address, quint16 port);
 	void disconnectFromHost(void);
+	void abort(void);
 private:
 	int m_fd;
 	int m_domain;
@@ -31,6 +32,7 @@ private:
 	QList<QHostAddress> m_addresses;
 	QHostAddress m_bound_address;
 	quint16 m_bound_port;
+	int m_lookup_id;
 	QSocketNotifier* m_notifier;
 	QTimer* m_timer;
 
