@@ -11,7 +11,8 @@
 
 SocketConnectorPrivate::SocketConnectorPrivate(SocketConnector* const q)
 	: q_ptr(q), m_fd(-1), m_domain(-1), m_type(-1), m_proto(-1), m_port(0),
-	  m_state(QAbstractSocket::UnconnectedState), m_notifier(0), m_timer(0)
+	  m_state(QAbstractSocket::UnconnectedState), m_error(QAbstractSocket::UnknownSocketError),
+	  m_notifier(0), m_timer(0)
 {
 }
 
@@ -78,7 +79,8 @@ bool SocketConnectorPrivate::bindTo(const QHostAddress& a, quint16 port)
 		return true;
 	}
 
-	Q_EMIT q->error(QAbstractSocket::UnknownSocketError);
+	this->m_error = QAbstractSocket::UnknownSocketError;
+	Q_EMIT q->error(this->m_error);
 	return false;
 }
 
@@ -221,8 +223,9 @@ void SocketConnectorPrivate::_q_startConnecting(const QHostInfo& info)
 
 	if (this->m_addresses.isEmpty()) {
 		this->m_state = QAbstractSocket::UnconnectedState;
+		this->m_error = QAbstractSocket::HostNotFoundError;
 		Q_EMIT q->stateChanged(this->m_state);
-		Q_EMIT q->error(QAbstractSocket::HostNotFoundError);
+		Q_EMIT q->error(this->m_error);
 		return;
 	}
 
@@ -240,8 +243,9 @@ void SocketConnectorPrivate::_q_connectToNextAddress(void)
 
 	if (this->m_addresses.isEmpty()) {
 		this->m_state = QAbstractSocket::UnconnectedState;
+		this->m_error = QAbstractSocket::ConnectionRefusedError;
 		Q_EMIT q->stateChanged(this->m_state);
-		Q_EMIT q->error(QAbstractSocket::ConnectionRefusedError);
+		Q_EMIT q->error(this->m_error);
 		return;
 	}
 

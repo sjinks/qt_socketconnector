@@ -68,4 +68,38 @@ bool SocketConnector::assignTo(QAbstractSocket* target)
 	return false;
 }
 
+QAbstractSocket::SocketType SocketConnector::socketType(void) const
+{
+	Q_D(const SocketConnector);
+	int domain = d->m_domain;
+	int type   = d->m_type;
+
+	if (domain != AF_INET && domain != AF_INET6) {
+		return QAbstractSocket::UnknownSocketType;
+	}
+
+	if (SOCK_STREAM == type) {
+		return QAbstractSocket::TcpSocket;
+	}
+
+	if (SOCK_DGRAM == type) {
+		return QAbstractSocket::UdpSocket;
+	}
+
+	return QAbstractSocket::UnknownSocketType;
+}
+
+QAbstractSocket::SocketState SocketConnector::state(void) const
+{
+	Q_D(const SocketConnector);
+	return d->m_state;
+}
+
+QAbstractSocket::SocketError SocketConnector::error(void) const
+{
+	Q_D(const SocketConnector);
+	return d->m_error;
+}
+
+
 #include "moc_socketconnector.cpp"

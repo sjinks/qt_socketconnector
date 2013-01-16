@@ -27,6 +27,7 @@ private:
 	int m_proto;
 	int m_port;
 	QAbstractSocket::SocketState m_state;
+	QAbstractSocket::SocketError m_error;
 	QList<QHostAddress> m_addresses;
 	QHostAddress m_bound_address;
 	quint16 m_bound_port;
