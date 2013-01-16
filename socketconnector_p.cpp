@@ -43,8 +43,6 @@ bool SocketConnectorPrivate::createSocket(int domain, int type, int proto)
 
 bool SocketConnectorPrivate::bindTo(const QHostAddress& a, quint16 port)
 {
-	qDebug("%s: %s:%d", Q_FUNC_INFO, qPrintable(a.toString()), int(port));
-
 	if (-1 == this->m_fd) {
 		qWarning("%s: call SocketConnector::createSocket() first", Q_FUNC_INFO);
 		return false;
@@ -86,7 +84,6 @@ bool SocketConnectorPrivate::bindTo(const QHostAddress& a, quint16 port)
 
 void SocketConnectorPrivate::connectToHost(const QString &address, quint16 port)
 {
-	qDebug("%s %s:%d", Q_FUNC_INFO, qPrintable(address), int(port));
 	if (this->m_state == QAbstractSocket::ConnectingState || this->m_state == QAbstractSocket::ConnectedState || this->m_state == QAbstractSocket::HostLookupState || this->m_state == QAbstractSocket::ClosingState) {
 		qWarning("%s called when already looking up or connecting/connected to \"%s\"", Q_FUNC_INFO, qPrintable(address));
 		return;
@@ -111,7 +108,6 @@ void SocketConnectorPrivate::connectToHost(const QString &address, quint16 port)
 
 void SocketConnectorPrivate::disconnectFromHost(void)
 {
-	qDebug("%s", Q_FUNC_INFO);
 	Q_Q(SocketConnector);
 
 	QAbstractSocket::SocketState prev = this->m_state;
@@ -188,7 +184,6 @@ bool SocketConnectorPrivate::bindV6(const QHostAddress& a, quint16 port)
 
 int SocketConnectorPrivate::connectV4(const QHostAddress& a)
 {
-	qDebug("%s", Q_FUNC_INFO);
 	struct sockaddr_in sa;
 	memset(&sa, 0, sizeof(sa));
 
@@ -230,7 +225,6 @@ int SocketConnectorPrivate::connectV6(const QHostAddress& a)
 
 void SocketConnectorPrivate::_q_startConnecting(const QHostInfo& info)
 {
-	qDebug("%s", Q_FUNC_INFO);
 	this->m_addresses = info.addresses();
 	this->m_lookup_id = -1;
 
@@ -252,8 +246,6 @@ void SocketConnectorPrivate::_q_startConnecting(const QHostInfo& info)
 
 void SocketConnectorPrivate::_q_connectToNextAddress(void)
 {
-	qDebug("%s", Q_FUNC_INFO);
-
 	Q_Q(SocketConnector);
 
 	if (this->m_addresses.isEmpty()) {
@@ -263,8 +255,6 @@ void SocketConnectorPrivate::_q_connectToNextAddress(void)
 		Q_EMIT q->error(this->m_error);
 		return;
 	}
-
-	qDebug("%s %s", Q_FUNC_INFO, qPrintable(this->m_addresses.first().toString()));
 
 	int res;
 	QHostAddress address = this->m_addresses.takeFirst();
@@ -310,11 +300,9 @@ void SocketConnectorPrivate::_q_connected(int sock)
 {
 	this->m_notifier->setEnabled(false);
 
-	qDebug("%s", Q_FUNC_INFO);
 	int err;
 	socklen_t l = sizeof(err);
 	getsockopt(sock, SOL_SOCKET, SO_ERROR, &err, &l);
-	qDebug("%d", err);
 
 	if (err) {
 		this->_q_abortConnection();
@@ -338,7 +326,6 @@ void SocketConnectorPrivate::_q_connected(int sock)
 
 void SocketConnectorPrivate::_q_abortConnection(void)
 {
-	qDebug("%s", Q_FUNC_INFO);
 	this->m_notifier->setEnabled(false);
 	delete this->m_notifier;
 	this->m_timer->deleteLater();
@@ -357,7 +344,6 @@ void SocketConnectorPrivate::_q_abortConnection(void)
 
 int SocketConnectorPrivate::recreateSocket(void)
 {
-	qDebug("%s", Q_FUNC_INFO);
 	int fd = ::socket(this->m_domain, this->m_type, this->m_proto);
 	if (fd != -1) {
 		::fcntl(fd, F_SETFL, ::fcntl(fd, F_GETFL) | O_NONBLOCK);
