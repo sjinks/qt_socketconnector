@@ -1,0 +1,5 @@
+<typesystem>
+  <load-typesystem name="typesystem_core.xml" generate="no" />
+  <load-typesystem name="typesystem_network.xml" generate="no" />
+  <load-typesystem name="typesystem_socketconnector.xml" generate="yes" />
+</typesystem>

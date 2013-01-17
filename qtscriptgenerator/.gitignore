@@ -1,0 +1,4 @@
+*.log
+.preprocessed.tmp
+/doc
+/generated_cpp

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typesystem package="socketconnector">
+	<rejection class="*" function-name="d_func"/>
+	<rejection class="*" field-name="d_ptr"/>
+
+	<namespace-type name="Antigate"/>
+	<object-type name="SocketConnector"/>
+</typesystem>
