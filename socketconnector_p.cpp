@@ -1,3 +1,4 @@
+#include <QtCore/QEventLoop>
 #include <QtCore/QSocketNotifier>
 #include <QtCore/QTimer>
 #include <unistd.h>
@@ -149,6 +150,34 @@ void SocketConnectorPrivate::abort(void)
 	}
 
 	this->disconnectFromHost();
+}
+
+bool SocketConnectorPrivate::waitForConnected(int timeout)
+{
+	Q_Q(SocketConnector);
+
+	if (QAbstractSocket::ConnectedState == this->m_state) {
+		return true;
+	}
+
+	QEventLoop loop;
+	QObject::connect(q, SIGNAL(connected()), &loop, SLOT(quit()));
+	QObject::connect(q, SIGNAL(error()),     &loop, SLOT(quit()));
+
+	if (timeout != -1) {
+		QTimer::singleShot(timeout, &loop, SLOT(quit()));
+	}
+
+	loop.exec();
+
+	switch (this->m_state) {
+		case QAbstractSocket::ConnectedState:
+			return true;
+
+		default:
+			this->abort();
+			return false;
+	}
 }
 
 bool SocketConnectorPrivate::bindV4(const QHostAddress& a, quint16 port)

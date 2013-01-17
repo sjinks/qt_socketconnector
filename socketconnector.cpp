@@ -57,6 +57,12 @@ void SocketConnector::abort(void)
 	d->abort();
 }
 
+bool SocketConnector::waitForConnected(int timeout)
+{
+	Q_D(SocketConnector);
+	return d->waitForConnected(timeout);
+}
+
 bool SocketConnector::assignTo(QAbstractSocket* target)
 {
 	Q_D(SocketConnector);

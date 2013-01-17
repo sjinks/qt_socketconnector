@@ -21,6 +21,8 @@ public:
 	void connectToHost(const QString& address, quint16 port);
 	void disconnectFromHost(void);
 	void abort(void);
+
+	bool waitForConnected(int timeout);
 private:
 	int m_fd;
 	int m_domain;

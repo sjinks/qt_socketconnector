@@ -22,6 +22,8 @@ public:
 	void disconnectFromHost(void);
 	void abort(void);
 
+	bool waitForConnected(int timeout = 30000);
+
 	bool assignTo(QAbstractSocket* target);
 
 	QAbstractSocket::SocketType socketType(void) const;
