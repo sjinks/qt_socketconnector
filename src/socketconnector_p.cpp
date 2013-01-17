@@ -162,7 +162,7 @@ bool SocketConnectorPrivate::waitForConnected(int timeout)
 
 	QEventLoop loop;
 	QObject::connect(q, SIGNAL(connected()), &loop, SLOT(quit()));
-	QObject::connect(q, SIGNAL(error()),     &loop, SLOT(quit()));
+	QObject::connect(q, SIGNAL(error(QAbstractSocket::SocketError)), &loop, SLOT(quit()));
 
 	if (timeout != -1) {
 		QTimer::singleShot(timeout, &loop, SLOT(quit()));
