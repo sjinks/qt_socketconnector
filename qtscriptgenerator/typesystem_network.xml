@@ -8,4 +8,31 @@
 	<enum-type name="QAbstractSocket::SocketState"/>
 	<enum-type name="QAbstractSocket::SocketType"/>
 	<value-type name="QHostAddress"/>
+
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::setSocketDescriptor', unmatched parameter type 'QIODevice::OpenMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::bind', unmatched parameter type 'QAbstractSocket::BindMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::setSocketOption', unmatched parameter type 'QAbstractSocket::SocketOption'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::setPauseMode', unmatched parameter type 'QAbstractSocket::PauseModes'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::proxyAuthenticationRequired', unmatched parameter type 'QNetworkProxy const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::QAbstractSocket', unmatched parameter type 'QAbstractSocketPrivate&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::connectToHost', unmatched parameter type 'QIODevice::OpenMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::socketOption', unmatched parameter type 'QAbstractSocket::SocketOption'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::setProxy', unmatched parameter type 'QNetworkProxy const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::pauseMode', unmatched return type 'QAbstractSocket::PauseModes'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QAbstractSocket::proxy', unmatched return type 'QNetworkProxy'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QAbstractSocket::BindFlag' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QAbstractSocket::NetworkLayerProtocol' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QAbstractSocket::PauseMode' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QAbstractSocket::SocketOption' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::setAddress', unmatched parameter type 'sockaddr const*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::setAddress', unmatched parameter type 'Q_IPV6ADDR const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::operator==', unmatched parameter type 'QHostAddress::SpecialAddress'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::QHostAddress', unmatched parameter type 'QHostAddress::SpecialAddress'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::QHostAddress', unmatched parameter type 'sockaddr const*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::QHostAddress', unmatched parameter type 'Q_IPV6ADDR const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::protocol', unmatched return type 'QAbstractSocket::NetworkLayerProtocol'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::operator!=', unmatched parameter type 'QHostAddress::SpecialAddress'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QHostAddress::toIPv6Address', unmatched return type 'Q_IPV6ADDR'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QHostAddress::SpecialAddress' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: Class 'QHostAddress' has equals operators but no qHash() function"/>
 </typesystem>

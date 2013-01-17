@@ -4,6 +4,14 @@
 	<rejection class="*" field-name="d"/>
 
 	<object-type name="QObject"/>
+	<object-type name="QIODevice"/>
+
+	<rejection class="QHash" function-name="*"/>
+	<rejection class="QList" function-name="*"/>
+	<rejection class="QMap" function-name="*"/>
+	<rejection class="QMultiMap" function-name="*"/>
+	<rejection class="QSet" function-name="*"/>
+	<rejection class="QVector" function-name="*"/>
 
 	<primitive-type name="bool"/>
 	<primitive-type name="double"/>
@@ -39,6 +47,51 @@
 	<primitive-type name="QByteRef"/>
 	<primitive-type name="QBitRef"/>
 	<primitive-type name="QBool"/>
-	<primitive-type name="jobject"/>
 	<primitive-type name="quintptr"/>
+	<primitive-type name="qintptr"/>
+
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::peek', unmatched return type 'QByteArray'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::openMode', unmatched return type 'QIODevice::OpenMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::write', unmatched parameter type 'QByteArray const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::open', unmatched parameter type 'QIODevice::OpenMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::read', unmatched return type 'QByteArray'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::QIODevice', unmatched parameter type 'QIODevicePrivate&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::readLine', unmatched return type 'QByteArray'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::setOpenMode', unmatched parameter type 'QIODevice::OpenMode'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QIODevice::readAll', unmatched return type 'QByteArray'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QIODevice::OpenModeFlag' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::connectNotify', unmatched parameter type 'QMetaMethod const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::QObject', unmatched parameter type 'QObjectPrivate&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::eventFilter', unmatched parameter type 'QEvent*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::connect_functor', unmatched return type 'QMetaObject::Connection'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::findChild', unmatched return type 'T'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::connect', unmatched return type 'QtPrivate::QEnableIf&lt;int,QMetaObject::Connection&gt;::Type'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::connect', unmatched return type 'QMetaObject::Connection'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::dynamicPropertyNames', unmatched return type 'QList&lt;QByteArray&gt;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::customEvent', unmatched parameter type 'QEvent*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::childEvent', unmatched parameter type 'QChildEvent*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::userData', unmatched return type 'QObjectUserData*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::connectImpl', unmatched return type 'QMetaObject::Connection'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::event', unmatched parameter type 'QEvent*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::disconnectNotify', unmatched parameter type 'QMetaMethod const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::objectNameChanged', unmatched parameter type 'QPrivateSignal'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::isSignalConnected', unmatched parameter type 'QMetaMethod const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::setUserData', unmatched parameter type 'QObjectUserData*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::disconnectImpl', unmatched parameter type 'QMetaObject const*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::findChildren', unmatched return type 'QList&lt;T&gt;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::timerEvent', unmatched parameter type 'QTimerEvent*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::startTimer', unmatched parameter type 'Qt::TimerType'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::disconnect', unmatched parameter type 'QtPrivate::FunctionPointer&lt;Func1&gt;::Object const*'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::disconnect', unmatched parameter type 'QMetaObject::Connection const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping function 'QObject::disconnect', unmatched parameter type 'QMetaMethod const&amp;'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: skipping field 'QObject::staticQtMetaObject' with unmatched type 'QMetaObject'"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'QtMetaTypePrivate' does not have a type entry"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'QAlgorithmsPrivate' does not have a type entry"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'QtPrivate' does not have a type entry"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'std' does not have a type entry"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: namespace 'Qt' does not have a type entry"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'enum_1' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'enum_2' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: enum 'QtMsgType' does not have a type entry or is not an enum"/>
+	<suppress-warning text="WARNING(MetaJavaBuilder) :: type 'JObjectWrapper' is specified in typesystem, but not defined. This could potentially lead to compilation errors."/>
 </typesystem>
