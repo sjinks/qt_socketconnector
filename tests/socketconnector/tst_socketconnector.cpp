@@ -48,10 +48,10 @@ private Q_SLOTS:
 		QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
 		for (int i=0; i<ifaces.size() && (!found_lo || !found_other); ++i) {
 			const QNetworkInterface& iface = ifaces.at(i);
-			QNetworkInterface::InterfaceFlags::Int flags = iface.flags().operator Int();
+			uint flags = uint(iface.flags());
 
-			if ((flags & QNetworkInterface::InterfaceFlags::Int(QNetworkInterface::IsUp | QNetworkInterface::IsRunning)) != 0 && iface.addressEntries().size() > 0) {
-				if (flags & QNetworkInterface::InterfaceFlags::Int(QNetworkInterface::IsLoopBack)) {
+			if ((flags & uint(QNetworkInterface::IsUp | QNetworkInterface::IsRunning)) != 0 && iface.addressEntries().size() > 0) {
+				if (flags & uint(QNetworkInterface::IsLoopBack)) {
 					found_lo = true;
 					lo = iface;
 				}
