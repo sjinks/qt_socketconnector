@@ -64,11 +64,19 @@ private Q_SLOTS:
 		}
 
 		if (!found_lo) {
+#if QT_VERSION < 0x050000
+			QSKIP("Failed to find a loopback interface", SkipAll);
+#else
 			QSKIP("Failed to find a loopback interface");
+#endif
 		}
 
 		if (!found_other) {
+#if QT_VERSION < 0x050000
+			QSKIP("Failed to find any other interface than loopback", SkipAll);
+#else
 			QSKIP("Failed to find any other interface than loopback");
+#endif
 		}
 
 		qDebug("Loopback interface: %s", qPrintable(lo.humanReadableName()));
@@ -192,7 +200,11 @@ private Q_SLOTS:
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
 
 		if (!this->m_conn->bindTo(QHostAddress::LocalHost, port)) {
+#if QT_VERSION < 0x050000
+			QSKIP("Skipping the test because bind() failed", SkipSingle);
+#else
 			QSKIP("Skipping the test because bind() failed");
+#endif
 		}
 
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::BoundState);
@@ -255,7 +267,11 @@ private Q_SLOTS:
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
 
 		if (!this->m_conn->bindTo(this->m_addr, port)) {
+#if QT_VERSION < 0x050000
+			QSKIP("Skipping the test because bind() failed", SkipSingle);
+#else
 			QSKIP("Skipping the test because bind() failed");
+#endif
 		}
 
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::BoundState);
