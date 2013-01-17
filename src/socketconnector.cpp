@@ -71,7 +71,8 @@ bool SocketConnector::assignTo(QAbstractSocket* target)
 	if (QAbstractSocket::ConnectedState == d->m_state) {
 		bool res = target->setSocketDescriptor(fd, QAbstractSocket::ConnectedState, QIODevice::ReadWrite);
 		if (res) {
-			d->m_fd = -1;
+			d->m_fd    = -1;
+			d->m_state = QAbstractSocket::UnconnectedState;
 		}
 
 		return true;
