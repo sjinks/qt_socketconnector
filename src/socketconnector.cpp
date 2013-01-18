@@ -275,4 +275,14 @@ QAbstractSocket::SocketError SocketConnector::error(void) const
 	return d->m_error;
 }
 
+/**
+ * @brief Returns the native socket descriptor if this is available; otherwise returns -1.
+ * @return Native socket descriptor
+ */
+qintptr SocketConnector::socketDescriptor(void) const
+{
+	Q_D(const SocketConnector);
+	return d->m_fd;
+}
+
 #include "moc_socketconnector.cpp"

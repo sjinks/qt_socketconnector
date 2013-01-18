@@ -30,6 +30,8 @@ public:
 	QAbstractSocket::SocketState state(void) const;
 	QAbstractSocket::SocketError error(void) const;
 
+	qintptr socketDescriptor(void) const;
+
 Q_SIGNALS:
 	void hostFound(void);
 	void connected(void);
