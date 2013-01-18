@@ -6,6 +6,10 @@
 #include <QtNetwork/QAbstractSocket>
 #include <QtNetwork/QHostInfo>
 
+#if QT_VERSION < 0x050000
+typedef qptrdiff qintptr;
+#endif
+
 class SocketConnectorPrivate;
 
 class SocketConnector : public QObject {
