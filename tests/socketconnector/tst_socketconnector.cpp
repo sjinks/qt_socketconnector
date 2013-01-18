@@ -122,29 +122,36 @@ private Q_SLOTS:
 	{
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::UnknownSocketType);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
+		QCOMPARE(this->m_conn->socketDescriptor(), -1);
 
 		QVERIFY(this->m_conn->createTcpSocket());
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::TcpSocket);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		QVERIFY(this->m_conn->createUdpSocket());
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::UdpSocket);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		QVERIFY(this->m_conn->createTcpSocket());
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::TcpSocket);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		QVERIFY(this->m_conn->bindTo(this->m_addr));
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::TcpSocket);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::BoundState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		QVERIFY(!this->m_conn->bindTo(QHostAddress::LocalHost));
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::BoundState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 	}
 
 	void testWaitForConnected(void)
 	{
+		QCOMPARE(this->m_conn->socketDescriptor(), -1);
 		this->m_conn->connectToHost(this->m_server->serverAddress(), this->m_server->serverPort());
 		QVERIFY(!this->m_conn->waitForConnected());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
@@ -155,20 +162,24 @@ private Q_SLOTS:
 		this->m_conn->connectToHost(this->m_server->serverAddress(), this->m_server->serverPort());
 		QVERIFY(this->m_conn->waitForConnected());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::ConnectedState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		QVERIFY(!this->m_conn->createTcpSocket());
 		QTcpSocket* s = new QTcpSocket(this);
 		QVERIFY(this->m_conn->assignTo(s));
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
+		QCOMPARE(this->m_conn->socketDescriptor(), -1);
 
 		QVERIFY(this->m_conn->createTcpSocket());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
 		QVERIFY(this->m_conn->bindTo(this->m_addr));
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::BoundState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 
 		this->m_conn->connectToHost(this->m_server->serverAddress(), this->m_server->serverPort());
 		QVERIFY(this->m_conn->waitForConnected());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::ConnectedState);
+		QVERIFY(this->m_conn->socketDescriptor() != -1);
 	}
 
 	void testLoopback(void)
