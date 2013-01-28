@@ -89,6 +89,10 @@ SocketConnector::SocketConnector(QObject* parent)
  */
 SocketConnector::~SocketConnector(void)
 {
+#if QT_VERSION < 0x040600
+	delete this->d_ptr;
+	this->d_ptr = 0;
+#endif
 }
 
 /**

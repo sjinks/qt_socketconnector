@@ -2,7 +2,6 @@
 #define SOCKETCONNECTOR_H
 
 #include <QtCore/QObject>
-#include <QtCore/QScopedPointer>
 #include <QtNetwork/QAbstractSocket>
 #include <QtNetwork/QHostInfo>
 
@@ -46,7 +45,11 @@ Q_SIGNALS:
 private:
 	Q_DISABLE_COPY(SocketConnector)
 	Q_DECLARE_PRIVATE(SocketConnector)
+#if QT_VERSION >= 0x040600
 	QScopedPointer<SocketConnectorPrivate> d_ptr;
+#else
+	SocketConnectorPrivate* d_ptr;
+#endif
 
 	Q_PRIVATE_SLOT(d_func(), void _q_startConnecting(QHostInfo))
 	Q_PRIVATE_SLOT(d_func(), void _q_connectToNextAddress())

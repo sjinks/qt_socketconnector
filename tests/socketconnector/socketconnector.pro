@@ -6,6 +6,8 @@ CONFIG  -= app_bundle
 TEMPLATE = app
 DESTDIR  = ../
 
+lessThan(QT_MAJOR_VERSION, 5): CONFIG += qtestlib
+
 SOURCES  = tst_socketconnector.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

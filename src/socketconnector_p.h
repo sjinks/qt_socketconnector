@@ -3,13 +3,19 @@
 
 #include <QtNetwork/QHostAddress>
 #include <QtNetwork/QHostInfo>
+#include "qt4compat.h"
 
+#if QT_VERSION >= 0x040400
 QT_FORWARD_DECLARE_CLASS(QSocketNotifier)
 QT_FORWARD_DECLARE_CLASS(QTimer)
+#else
+class QSocketNotifier;
+class QTimer;
+#endif
 
 class SocketConnector;
 
-class SocketConnectorPrivate {
+class Q_DECL_HIDDEN SocketConnectorPrivate {
 	Q_DECLARE_PUBLIC(SocketConnector)
 	SocketConnector* const q_ptr;
 public:

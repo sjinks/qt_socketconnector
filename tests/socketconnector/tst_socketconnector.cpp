@@ -79,8 +79,10 @@ private Q_SLOTS:
 #endif
 		}
 
+#if QT_VERSION >= 0x040500
 		qDebug("Loopback interface: %s", qPrintable(lo.humanReadableName()));
 		qDebug("Other interface: %s", qPrintable(other.humanReadableName()));
+#endif
 
 		for (int i=0; i<addrs.size(); ++i) {
 			QHostAddress a = addrs.at(i).ip();
@@ -122,7 +124,7 @@ private Q_SLOTS:
 	{
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::UnknownSocketType);
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
-		QCOMPARE(this->m_conn->socketDescriptor(), -1);
+		QCOMPARE(this->m_conn->socketDescriptor(), qintptr(-1));
 
 		QVERIFY(this->m_conn->createTcpSocket());
 		QCOMPARE(this->m_conn->socketType(), QAbstractSocket::TcpSocket);
@@ -151,7 +153,7 @@ private Q_SLOTS:
 
 	void testWaitForConnected(void)
 	{
-		QCOMPARE(this->m_conn->socketDescriptor(), -1);
+		QCOMPARE(this->m_conn->socketDescriptor(), qintptr(-1));
 		this->m_conn->connectToHost(this->m_server->serverAddress(), this->m_server->serverPort());
 		QVERIFY(!this->m_conn->waitForConnected());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
@@ -168,7 +170,7 @@ private Q_SLOTS:
 		QTcpSocket* s = new QTcpSocket(this);
 		QVERIFY(this->m_conn->assignTo(s));
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
-		QCOMPARE(this->m_conn->socketDescriptor(), -1);
+		QCOMPARE(this->m_conn->socketDescriptor(), qintptr(-1));
 
 		QVERIFY(this->m_conn->createTcpSocket());
 		QCOMPARE(this->m_conn->state(), QAbstractSocket::UnconnectedState);
