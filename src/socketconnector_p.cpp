@@ -83,7 +83,7 @@ bool SocketConnectorPrivate::bindTo(const QHostAddress& a, quint16 port)
 	return false;
 }
 
-void SocketConnectorPrivate::connectToHost(const QString &address, quint16 port)
+void SocketConnectorPrivate::connectToHost(const QString& address, quint16 port)
 {
 	if (this->m_state == QAbstractSocket::ConnectingState || this->m_state == QAbstractSocket::ConnectedState || this->m_state == QAbstractSocket::HostLookupState || this->m_state == QAbstractSocket::ClosingState) {
 		qWarning("%s called when already looking up or connecting/connected to \"%s\"", Q_FUNC_INFO, qPrintable(address));
