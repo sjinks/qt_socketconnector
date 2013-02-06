@@ -3,4 +3,6 @@ Makefile.*
 *.o
 *.pro.user
 moc_*
+*.moc
 *.so
+/tests/tst_*
