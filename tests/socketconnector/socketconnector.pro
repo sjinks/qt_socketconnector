@@ -10,8 +10,6 @@ lessThan(QT_MAJOR_VERSION, 5): CONFIG += qtestlib
 
 SOURCES  = tst_socketconnector.cpp
 
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
 INCLUDEPATH += ../../src
 DEPENDPATH  += ../../src
 LIBS        += -L$$OUT_PWD/$$DESTDIR/../lib -lsocketconnector
