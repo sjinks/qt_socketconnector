@@ -11,7 +11,7 @@
 #include "socketconnector_p.h"
 
 SocketConnectorPrivate::SocketConnectorPrivate(SocketConnector* const q)
-	: q_ptr(q), m_fd(-1), m_domain(-1), m_type(-1), m_proto(-1), m_port(0),
+	: q_ptr(q), m_fd(-1), m_domain(-1), m_type(-1), m_proto(-1), m_port(0), m_connectiont_timeout(30000),
 	  m_state(QAbstractSocket::UnconnectedState), m_error(QAbstractSocket::UnknownSocketError),
 	  m_lookup_id(-1), m_notifier(0), m_timer(0)
 {
@@ -318,7 +318,7 @@ void SocketConnectorPrivate::_q_connectToNextAddress(void)
 		this->m_timer = new QTimer(q);
 		this->m_timer->setSingleShot(true);
 		QObject::connect(this->m_timer, SIGNAL(timeout()), q, SLOT(_q_abortConnection()));
-		this->m_timer->start(30000);
+		this->m_timer->start(this->m_connectiont_timeout);
 		return;
 	}
 

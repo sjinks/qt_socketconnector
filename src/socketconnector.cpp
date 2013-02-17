@@ -289,4 +289,24 @@ qintptr SocketConnector::socketDescriptor(void) const
 	return d->m_fd;
 }
 
+/**
+ * @brief Sets the connection timeout
+ * @param timeout Timeout value (msec)
+ */
+void SocketConnector::setConnectionTimeout(uint timeout)
+{
+	Q_D(SocketConnector);
+	d->m_connectiont_timeout = timeout;
+}
+
+/**
+ * @brief Returns the current connection timeout
+ * @return Connection timeout
+ */
+uint SocketConnector::connectionTimeout(void) const
+{
+	Q_D(const SocketConnector);
+	return d->m_connectiont_timeout;
+}
+
 #include "moc_socketconnector.cpp"

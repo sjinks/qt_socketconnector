@@ -35,6 +35,9 @@ public:
 
 	qintptr socketDescriptor(void) const;
 
+	void setConnectionTimeout(uint timeout);
+	uint connectionTimeout(void) const;
+
 Q_SIGNALS:
 	void hostFound(void);
 	void connected(void);

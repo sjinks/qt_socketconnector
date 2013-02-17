@@ -35,6 +35,7 @@ private:
 	int m_type;
 	int m_proto;
 	int m_port;
+	uint m_connectiont_timeout;
 	QAbstractSocket::SocketState m_state;
 	QAbstractSocket::SocketError m_error;
 	QList<QHostAddress> m_addresses;
